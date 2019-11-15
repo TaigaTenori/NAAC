@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet">
+    </head>
+    <body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="header" style="background-color: #5CACEE; text-align: center">
+                    <h1 style="font-family: 'Yeon Sung', cursive;"> Open Tibia Automatic Account Creator </h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {% if request.user.is_authenticated %}
+                    <div style="margin-top:20px; color:green">You are logged in as {{request.user.get_username}}
+                        (<a href='{% url 'user_logout' %}'>Log Out</a>)
+                    </div>
+                {% else %}
+                <div style="margin-top:20px; color:green">
+                    Log in or <a href='{% url 'create_account' %}'>create</a> an account
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"> Menu </div>
+
+            <div class="col-8">
+                <div class="messages">
+                    <ul>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    {% endif %}
+                    </ul>
+                </div>
+                {% block content %}
+
+                {% endblock %}
+             </div>
+
+            <div class="col"> Right </div>
+        </div>
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </div>
+</body>
+</html>
