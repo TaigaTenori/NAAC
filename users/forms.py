@@ -1,7 +1,15 @@
 # users/forms.py
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from .models import Account
+
+class AccountAuthenticationForm(AuthenticationForm):
+
+    class Meta:
+        model = Account
+        fields = {'name', 'password', }
+        labels = { 'name': 'Account name', }
+
 
 class AccountCreationForm(UserCreationForm):
 

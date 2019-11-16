@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
+    'global_site.apps.GlobalSiteConfig',
     'bootstrap4',
 ]
 
@@ -105,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 #SECURITY WARNING: No password validation, will accept '1' as a password, dev only
 # Comment out AUTH_PASSWORD_VALIDATORS = [] to enable strong defaults
-AUTH_PASSWORD_VALIDATORS = []
+#AUTH_PASSWORD_VALIDATORS = []
 
 AUTH_USER_MODEL = 'users.Account'
 # Internationalization

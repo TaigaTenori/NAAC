@@ -20,7 +20,7 @@
                     </div>
                 {% else %}
                 <div style="margin-top:20px; color:green">
-                    Log in or <a href='{% url 'create_account' %}'>create</a> an account
+                    <a href="{% url 'user_login' %}"> Log in</a> or <a href='{% url 'create_account' %}'>create</a> an account
                 </div>
                 {% endif %}
             </div>
@@ -29,15 +29,17 @@
             <div class="col"> Menu </div>
 
             <div class="col-8">
-                <div class="messages">
+
                     <ul>
                     {% if messages %}
+                    <div class="alert alert-primary">
                         {% for message in messages %}
                             <li class="{{ message.tags }}">{{ message }}</li>
                         {% endfor %}
+                    </div>
                     {% endif %}
                     </ul>
-                </div>
+
                 {% block content %}
 
                 {% endblock %}
