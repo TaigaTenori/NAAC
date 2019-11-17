@@ -3,7 +3,7 @@
 {% load bootstrap4 %}
 
 {% block content %}
-        <div class="page_content">
+
             <form method="POST" class="create-account-form">
                 {% csrf_token %}
                 {% bootstrap_form form %}
@@ -11,6 +11,6 @@
                     <button type="submit" class="btn btn-primary">Create!</button>
                 {% endbuttons %}
             </form>
-        </div>
+
 
 {% endblock %}

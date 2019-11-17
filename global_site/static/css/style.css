@@ -1,10 +1,16 @@
 body {
-    background: url("/global_site/img/bg.jpg") 50% 0 no-repeat fixed;
+    background: url("/global_site/img/bg.jpg") 59% 0 no-repeat fixed;
+    background-color: #051122;
 }
 
 .page_content {
+    margin-top: 30px;
     padding: 20px;
     border-radius: 20px;
     background-color: white;
     opacity: 90%;
+}
+.login_info {
+    border-bottom: 2px solid black; color:green;
+    margin-bottom: 10px;
 }

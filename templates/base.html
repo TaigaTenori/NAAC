@@ -14,19 +14,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                {% if request.user.is_authenticated %}
-                    <div style="margin-top:20px; color:green">You are logged in as {{request.user.get_username}}
-                        (<a href='{% url 'user_logout' %}'>Log Out</a>)
-                    </div>
-                {% else %}
-                <div style="margin-top:20px; color:green">
-                    <a href="{% url 'user_login' %}"> Log in</a> or <a href='{% url 'create_account' %}'>create</a> an account
-                </div>
-                {% endif %}
-            </div>
-        </div>
+
         <div class="row">
             <div class="col">
                 {% block left-menu %}
@@ -36,7 +24,16 @@
 
             <div class="col-8">
 
-                    <ul>
+                <div class="page_content">
+                    {% if request.user.is_authenticated %}
+                        <div class="login_info">You are logged in as {{request.user.get_username}}
+                            (<a href='{% url 'user_logout' %}'>Log Out</a>)
+                        </div>
+                    {% else %}
+                    <div class="login_info">
+                        <a href="{% url 'user_login' %}"> Log in</a> or <a href='{% url 'create_account' %}'>create</a> an account
+                    </div>
+                    {% endif %}
                     {% if messages %}
                     <div class="alert alert-primary">
                         {% for message in messages %}
@@ -44,11 +41,10 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    </ul>
-
                 {% block content %}
 
                 {% endblock %}
+                </div>
              </div>
 
             <div class="col"> Right </div>
