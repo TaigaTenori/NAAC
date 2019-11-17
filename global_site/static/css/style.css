@@ -1,0 +1,10 @@
+body {
+    background: url("/global_site/img/bg.jpg") 50% 0 no-repeat fixed;
+}
+
+.page_content {
+    padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    opacity: 90%;
+}
