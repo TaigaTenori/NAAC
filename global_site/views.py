@@ -13,9 +13,9 @@ def user_login(request):
     if request.user.is_authenticated:
         return redirect('index')
 
-    form = AuthenticationForm()
+    form = AccountAuthenticationForm()
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = AccountAuthenticationForm(data=request.POST)
         if form.is_valid():
 
             username = form.cleaned_data['username']
