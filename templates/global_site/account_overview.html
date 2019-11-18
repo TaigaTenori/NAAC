@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h2> Account overview </h2>
+
+    <div class="content">
+        <div class="row">
+            <div class="col">
+            Your account was created on: {{ account.date_joined }}
+            </div>
+            <div class="col">
+                You last logged in on: {{ account.last_login }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3 class="content_header3">Characters:</h3>
+            </div>
+        </div>
+    </div>
+{% endblock %}

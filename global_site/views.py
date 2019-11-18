@@ -4,6 +4,7 @@ from users.forms import AccountCreationForm, AccountAuthenticationForm
 from users.models import Account
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
     return render(request, 'global_site/index.html')
@@ -59,3 +60,8 @@ def create_account(request):
         return redirect('index')
     else:
         return render(request, 'global_site/create_account.html', {'form': form })
+
+@login_required
+def account_overview(request):
+    account = Account.objects.get(name=request.user.username)
+    return render(request, 'global_site/account_overview.html', {'account': account })

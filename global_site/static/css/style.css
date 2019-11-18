@@ -14,3 +14,7 @@ body {
     border-bottom: 2px solid black; color:green;
     margin-bottom: 10px;
 }
+.content_header3 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
