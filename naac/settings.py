@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'global_site.apps.GlobalSiteConfig',
     'bootstrap4',
+    'players',
 ]
 
 MIDDLEWARE = [
