@@ -5,6 +5,7 @@ from users.models import Account
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from players.models import Player
 # Create your views here.
 def index(request):
     return render(request, 'global_site/index.html')
@@ -64,4 +65,6 @@ def create_account(request):
 @login_required
 def account_overview(request):
     account = Account.objects.get(name=request.user.username)
-    return render(request, 'global_site/account_overview.html', {'account': account })
+    # Also provide a list of characters on this accounts
+    characters = Player.objects.filter(account_id=request.user.id)
+    return render(request, 'global_site/account_overview.html', {'account': account, 'characters': characters })

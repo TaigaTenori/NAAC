@@ -17,6 +17,9 @@
         <div class="row">
             <div class="col">
                 <h3 class="content_header3">Characters:</h3>
+                {% for character in characters %}
+                    <li> {{character.name}} </li>
+                {% endfor %}
             </div>
         </div>
     </div>
