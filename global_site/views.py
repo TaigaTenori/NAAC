@@ -6,6 +6,10 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from players.models import Player
+import datetime
+
+from django.contrib.auth.models import update_last_login
+
 # Create your views here.
 def index(request):
     return render(request, 'global_site/index.html')
@@ -29,6 +33,7 @@ def user_login(request):
             if user is not None:
                 messages.success(request, "You are now logged in!")
                 login(request, user)
+                #update_last_login(None, user)
                 return redirect('index')
             else:
                 messages.error(request, 'The supplied account name and password is incorrect')
@@ -64,7 +69,7 @@ def create_account(request):
 
 @login_required
 def account_overview(request):
-    account = Account.objects.get(name=request.user.username)
+    account = request.user
     # Also provide a list of characters on this accounts
     characters = Player.objects.filter(account_id=request.user.id)
     return render(request, 'global_site/account_overview.html', {'account': account, 'characters': characters })
