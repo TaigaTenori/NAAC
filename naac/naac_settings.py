@@ -1,3 +1,1 @@
-OTS = {
-    'auto_login': True,
-}
+AUTO_LOGIN = True, # Automatically log the user in after creating account

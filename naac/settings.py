@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 #SECURITY WARNING: No password validation, will accept '1' as a password, dev only
 # Comment out AUTH_PASSWORD_VALIDATORS = [] to enable strong defaults
-#AUTH_PASSWORD_VALIDATORS = []
+AUTH_PASSWORD_VALIDATORS = []
 
 AUTH_USER_MODEL = 'users.Account'
 # Internationalization

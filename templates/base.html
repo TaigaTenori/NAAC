@@ -27,7 +27,8 @@
                 <div class="page_content">
                     {% if request.user.is_authenticated %}
                         <div class="login_info">You are logged in as {{request.user.get_username}}
-                            (<a href='{% url 'user_logout' %}'>Log Out</a>)
+                            <a href= '{% url 'account_overview' %}'> My Account </a>
+                            <a href='{% url 'user_logout' %}'><img title="Logout" src=" {% static 'img/logout.png' %}"/></a>
                         </div>
                     {% else %}
                     <div class="login_info">

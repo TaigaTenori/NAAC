@@ -7,6 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from players.models import Player
 import datetime
+from naac import naac_settings as config
 
 from django.contrib.auth.models import update_last_login
 
@@ -57,12 +58,12 @@ def create_account(request):
     form = AccountCreationForm(request.POST)
     if form.is_valid():
         user = form.save()
-        #if OTS['auto_login']:
-            # automatically login the users
-        messages.success(request, "Success! You are now registered and logged in!")
-        user = authenticate(name=form.cleaned_data['name'],
-                            password=form.cleaned_data['password1'],)
-        login(request, user)
+        messages.success(request, "Success! You are now registered!")
+        if config.AUTO_LOGIN:
+            # automatically login the user
+            user = authenticate(name=form.cleaned_data['name'], password=form.cleaned_data['password1'],)
+            login(request, user)
+
         return redirect('index')
     else:
         return render(request, 'global_site/create_account.html', {'form': form })
@@ -71,5 +72,5 @@ def create_account(request):
 def account_overview(request):
     account = request.user
     # Also provide a list of characters on this accounts
-    characters = Player.objects.filter(account_id=request.user.id)
+    characters = Player.objects.filter(account_id=account.id)
     return render(request, 'global_site/account_overview.html', {'account': account, 'characters': characters })
