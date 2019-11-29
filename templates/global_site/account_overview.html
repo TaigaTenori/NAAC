@@ -17,9 +17,14 @@
         <div class="row">
             <div class="col">
                 <h3 class="content_header3">Characters:</h3>
+                <ul>
                 {% for character in characters %}
-                    <li> {{character.name}} </li>
+                    <li> {{character.name}} &nbsp &nbsp
+                    <a href="{% url 'view_character' character.name %}"> View </a> &nbsp &nbsp
+                    <a href=""> Delete </a>
+                    </li>
                 {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
