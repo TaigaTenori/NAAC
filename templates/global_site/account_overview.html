@@ -21,7 +21,7 @@
                 {% for character in characters %}
                     <li> {{character.name}} &nbsp &nbsp
                     <a href="{% url 'view_character' character.name %}"> View </a> &nbsp &nbsp
-                    <a href=""> Delete </a>
+                    <a href=" {% url 'delete_character' character.name %}"> Delete </a>
                     </li>
                 {% endfor %}
                 </ul>
