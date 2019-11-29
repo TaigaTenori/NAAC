@@ -22,3 +22,9 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+.character_list li {
+    padding:2px;
+    list-style-position: outside;
+    border-bottom: 1px solid black;
+}
+.character_list li:nth-child(odd) { background: #e2ded9; }
