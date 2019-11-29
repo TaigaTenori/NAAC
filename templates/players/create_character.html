@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+    <h2> Create Character </h2>
+    <form method="POST" class="create-account-form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Create!</button>
+        {% endbuttons %}
+    </form>
+{% endblock %}

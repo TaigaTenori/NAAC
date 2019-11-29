@@ -4,6 +4,9 @@ from django.contrib import messages
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from global_site import urls
+from players.forms import CharacterCreationForm
+from django import forms
+
 
 def view_character(request, name):
     player = get_object_or_404(Player, name=name)
@@ -22,3 +25,16 @@ def delete_character(request, name):
     else:
         messages.warning(request, "You can't delete characters you don't own.")
     return redirect(reverse('account_overview'))
+
+
+@login_required
+def create_character(request):
+    form = CharacterCreationForm(request.POST or None)
+    if request.POST:
+        if form.is_valid():
+            messages.success(request, "Character successfuly created!")
+            character = form.save(commit=False)
+            character.account_id = request.user.id
+            character.save()
+            return redirect(reverse('account_overview'))
+    return render(request, 'players/create_character.html', {'form': form})
