@@ -12,7 +12,7 @@ class CharacterCreationForm(ModelForm):
         if Player.objects.filter(name=name).exists():
             raise forms.ValidationError("This name is already in use.")
         return name
-        
+
     class Meta:
         model = Player
         fields = ['name', 'vocation']

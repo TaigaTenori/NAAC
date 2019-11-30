@@ -24,23 +24,25 @@
 
 
 
-                    <div class="col-md-8">
+                    <div class="col-sm-8">
                          {{character.name}} &nbsp &nbsp
                     </div>
-                    <div class="col-md-2 text-right">
+                    <div class="col-sm-2 text-right">
                         <a href="{% url 'view_character' character.name %}"> View </a>
                     </div>
-                    <div class="col-md-2 text-right">
-                        <a href=" {% url 'delete_character' character.name %}"> Delete</a> &nbsp &nbsp
+                    <div class="col-sm-2 text-right">
+                        <a id="delete_character" onclick="deleteConfirm()" href=" {% url 'delete_character' character.name %}"> Delete</a> &nbsp &nbsp
 
                     </div>
                     </div>
                     </li>
-
+                    {% empty %}
+                    <li> You have no characters yet. </li>
                 {% endfor %}
                 </ul>
                 <a href="{% url 'create_character' %}">Create</a>
             </div>
         </div>
     </div>
+
 {% endblock %}
