@@ -31,7 +31,7 @@
                         <a href="{% url 'view_character' character.name %}"> View </a>
                     </div>
                     <div class="col-sm-2 text-right">
-                        <a id="delete_character" onclick="deleteConfirm()" href=" {% url 'delete_character' character.name %}"> Delete</a> &nbsp &nbsp
+                        <a href="" onclick="deleteConfirm('{% url 'delete_character' character.name %}')"> Delete</a> &nbsp &nbsp
 
                     </div>
                     </div>
