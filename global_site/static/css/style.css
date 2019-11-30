@@ -2,10 +2,25 @@ body {
     background: url("/global_site/img/bg.jpg") 59% 0 no-repeat fixed;
     background-color: #051122;
 }
+.right-menu .row{
+  border-bottom: 1px solid grey;
+  padding-top: 3px;
+  margin:auto;
 
+}
 .page_content {
     margin-top: 30px;
     padding: 20px;
+    border-radius: 20px;
+    background-color: white;
+    opacity: 90%;
+}
+.right-menu {
+    min-height: 200px;
+    margin-top: 30px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 5px;
     border-radius: 20px;
     background-color: white;
     opacity: 90%;

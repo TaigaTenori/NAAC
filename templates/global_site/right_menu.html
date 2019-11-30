@@ -1,0 +1,18 @@
+
+<div class="content right-menu">
+    <h3 class="text-center"> Highscores </h3>
+{% for player in highscores %}
+    <div class="row">
+
+
+        <div class="col-8">
+            <a href="{% url 'view_character' player.name %}">{{ player.name|truncatechars:10 }}</a>
+        </div>
+        <div class="col-4 text-right">
+            [{{ player.level }}]
+        </div>
+    </div>
+{% empty %}
+There are no highscores yet!
+{% endfor %}
+</div>

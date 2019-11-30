@@ -19,13 +19,13 @@
         </div>
 
         <div class="row">
-            <div class="col">
+            <div class="col-2">
                 {% block left-menu %}
                     {% include 'global_site/left_menu.html' %}
                 {% endblock %}
              </div>
 
-            <div class="col-8">
+            <div class="col-7">
 
                 <div class="page_content">
                     {% if request.user.is_authenticated %}
@@ -51,7 +51,13 @@
                 </div>
              </div>
 
-            <div class="col"> Right </div>
+            <div class="col-3">
+
+                {% block right-menu %}
+                    {% include 'global_site/right_menu.html' %}
+                {% endblock %}
+
+             </div>
         </div>
 
 
