@@ -5,8 +5,12 @@ body {
 .right-menu .row{
   border-bottom: 1px solid grey;
   padding-top: 3px;
+
   margin:auto;
 
+}
+.header div {
+    background: rgba(0,0,0,.3);
 }
 .page_content {
     margin-top: 30px;
@@ -21,13 +25,24 @@ body {
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 5px;
+    padding-bottom: 20px;
     border-radius: 20px;
     background-color: white;
     opacity: 90%;
 }
 .login_info {
-    border-bottom: 2px solid black; color:green;
+    padding: 5px;
+    padding-left: 10px;
+    border-bottom: 1px solid #d7d7b6;
+    color:#d7d7b6;
     margin-bottom: 10px;
+}
+.login_info a:link, a:visited {
+    color: #72a4d8;
+    text-decoration: none;
+}
+.login_info a:hover {
+    color: white;
 }
 .login_info img {
     max-width: 70%;

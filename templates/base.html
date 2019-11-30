@@ -12,8 +12,20 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="header" style="background-color: #5CACEE; text-align: center">
-                    <h1 style="font-family: 'Yeon Sung', cursive;"> Open Tibia Automatic Account Creator </h1>
+                <div class="header">
+                    <div class="login_info">
+                    {% if request.user.is_authenticated %}
+                            You are logged in as {{request.user.get_username}}
+                            <div style="display:inline-block; text-align: right;">
+                                &nbsp;&nbsp;<a href= '{% url 'account_overview' %}'> My Account </a>
+                                &nbsp;<a href='{% url 'user_logout' %}'><img title="Logout" src=" {% static 'img/logout.png' %}"/></a>
+                            </div>
+                    {% else %}
+
+                            <a href="{% url 'user_login' %}"> Log in</a> or <a href='{% url 'create_account' %}'>create</a> an account
+
+                    {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -28,16 +40,7 @@
             <div class="col-7">
 
                 <div class="page_content">
-                    {% if request.user.is_authenticated %}
-                        <div class="login_info">You are logged in as {{request.user.get_username}}
-                            <a href= '{% url 'account_overview' %}'> My Account </a>
-                            <a href='{% url 'user_logout' %}'><img title="Logout" src=" {% static 'img/logout.png' %}"/></a>
-                        </div>
-                    {% else %}
-                    <div class="login_info">
-                        <a href="{% url 'user_login' %}"> Log in</a> or <a href='{% url 'create_account' %}'>create</a> an account
-                    </div>
-                    {% endif %}
+
                     {% if messages %}
                     <div class="alert alert-primary">
                         {% for message in messages %}
