@@ -3,6 +3,8 @@ from django.db import models
 from users.models import Account
 # Create your models here.
 import time
+from naac.functions import get_exp_for_level
+from naac import naac_settings as config
 
 
 class Player(models.Model):
@@ -10,11 +12,11 @@ class Player(models.Model):
     world_id = models.PositiveIntegerField(default=1)
     group_id = models.IntegerField(default=1)
     account = models.ForeignKey(Account, models.DO_NOTHING)
-    level = models.IntegerField(default=8)
+    level = models.IntegerField(default=config.starting_level)
     vocation = models.IntegerField()
     health = models.IntegerField(default=150)
     healthmax = models.IntegerField(default=150)
-    experience = models.BigIntegerField(default=8000)
+    experience = models.BigIntegerField(default=get_exp_for_level(config.starting_level))
     lookbody = models.IntegerField(default=1)
     lookfeet = models.IntegerField(default=1)
     lookhead = models.IntegerField(default=1)
@@ -76,6 +78,14 @@ class Player(models.Model):
     onlinetime6 = models.BigIntegerField(default=1)
     onlinetime7 = models.BigIntegerField(default=1)
     onlinetimeall = models.BigIntegerField(default=1)
+
+    def save(self, *args, **kwargs):
+        # set starting positions depending on the choice of town
+        town = config.temple_position[self.town_id]
+        self.posx = town[0] # x
+        self.posy = town[1] # y
+        self.posz = town[2] # z
+        super(Player, self).save(*args, **kwargs)
 
     class Meta:
         managed = True

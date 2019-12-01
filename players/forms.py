@@ -6,6 +6,8 @@ from django import forms
 
 class CharacterCreationForm(ModelForm):
     vocation = forms.IntegerField(label="Select your vocation", widget=forms.Select(choices=config.VOCATIONS))
+    town_id = forms.IntegerField(label="Starting town", widget=forms.Select(choices=config.towns))
+
 
     def clean_name(self):
         name = self.cleaned_data['name']
@@ -15,4 +17,4 @@ class CharacterCreationForm(ModelForm):
 
     class Meta:
         model = Player
-        fields = ['name', 'vocation']
+        fields = ['name', 'vocation', 'town_id']
