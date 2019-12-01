@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <h3> Latest News </h3>
+    {% for post in news %}
+        <div class="news_post">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            Author: {{ post.author }}
+                        </td>
+                        <td>
+                            {{ post.topic }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            {{ post.body }}
+                        <td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+{% endblock %}

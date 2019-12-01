@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'global_site.apps.GlobalSiteConfig',
     'bootstrap4',
     'players',
+    'news',
 ]
 
 MIDDLEWARE = [
