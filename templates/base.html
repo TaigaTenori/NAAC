@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Yeon+Sung&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Yeon+Sung|Monoton&display=swap" rel="stylesheet">
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -15,14 +15,14 @@
                 <div class="header">
                     <div class="login_info">
                     {% if request.user.is_authenticated %}
-                            You are logged in as {{request.user.get_username}}
+                            <span class="header_span">&nbsp;&nbsp;You are logged in as {{request.user.get_username}}</span>
                             <div style="display:inline-block; text-align: right;">
-                                &nbsp;&nbsp;<a href= '{% url 'account_overview' %}'> My Account </a>
+                                <a href= '{% url 'account_overview' %}'> My Account </a>
                                 &nbsp;<a href='{% url 'user_logout' %}'><img title="Logout" src=" {% static 'img/logout.png' %}"/></a>
                             </div>
                     {% else %}
 
-                            <a href="{% url 'user_login' %}"> Log in</a> or <a href='{% url 'create_account' %}'>create</a> an account
+                            <span class="header_span"><a href="{% url 'user_login' %}"> Log in</a> or <a href='{% url 'create_account' %}'>create</a> an account</span>
 
                     {% endif %}
                     </div>

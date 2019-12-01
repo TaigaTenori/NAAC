@@ -9,8 +9,37 @@ body {
   margin:auto;
 
 }
+h1, h2, h3 {
+    font-family: Monoton;
+    padding-bottom: 20px;
+}
 .header div {
     background: rgba(0,0,0,.3);
+}
+.header_span {
+    background: url("/global_site/img/black.jpg") 50% repeat;
+
+}
+.account_info {
+    width: 80%;
+}
+.account_info table {
+    table-layout: auto;
+}
+.account_info tr {
+    border-bottom: 1px black solid;
+}
+.account_info td.left {
+    background: rgba(0,0,0,.3);
+    border-right: 1px grey solid;
+    width: auto;
+}
+.account_info td.right {
+    text-align: right;
+}
+.account_info td.middle {
+    text-align: left;
+    padding-left: 10%;
 }
 .page_content {
     margin-top: 30px;
@@ -58,3 +87,7 @@ body {
     border-bottom: 1px solid black;
 }
 .character_list li:nth-child(odd) { background: #e2ded9; }
+
+.footer {
+    font-family: 'Libre Barcode 39 Extended', cursive;
+}

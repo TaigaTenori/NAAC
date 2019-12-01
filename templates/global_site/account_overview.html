@@ -3,15 +3,41 @@
 
 
 {% block content %}
-    <h2> Account overview </h2>
+    <h3> Account overview </h3>
 
     <div class="content">
         <div class="row">
-            <div class="col">
-            Your account was created on: {{ account.date_joined }}
-            </div>
-            <div class="col">
-                You last logged in on: {{ account.last_login }}
+            <div class="col-md-12" align="center">
+                <table class="account_info">
+                	<tbody>
+                		<tr>
+                			<td class="left"> Created </td>
+                			<td class="middle"> {{ account.date_joined|date:"M d, Y" }}</td>
+                			<td class="right"> </td>
+                		</tr>
+                		<tr>
+                			<td class="left"> Last login</td>
+                			<td class="middle"> {{ account.last_login|date:"M d, Y" }}</td>
+                			<td class="right"> </td>
+                		</tr>
+                        <tr>
+                            <td class="left"> Account Type</td>
+                            <td class="middle"> {% if account.premdays > 0 %} Premium {% else %} Free {% endif %}</td>
+                            <td class="right"> </td>
+                        </tr>
+                        <tr>
+                            <td class="left"> Email</td>
+                            <td class="middle"> {{ account.email }}</td>
+                            <td class="right"> <a href="">Edit</a> </td>
+                        </tr>
+                        <tr>
+                            <td class="left"> Password</td>
+                            <td class="middle"> ************ </td>
+                            <td class="right"> <a href="">Edit</a> </td>
+                        </tr>
+
+                	</tbody>
+                </table>
             </div>
         </div>
         <div class="row">
@@ -25,13 +51,13 @@
 
 
                     <div class="col-sm-8">
-                         {{character.name}} &nbsp &nbsp
+                         {{character.name}} &nbsp; &nbsp;
                     </div>
                     <div class="col-sm-2 text-right">
                         <a href="{% url 'view_character' character.name %}"> View </a>
                     </div>
                     <div class="col-sm-2 text-right">
-                        <a href="" onclick="deleteConfirm('{% url 'delete_character' character.name %}')"> Delete</a> &nbsp &nbsp
+                        <a href="" onclick="deleteConfirm('{% url 'delete_character' character.name %}')"> Delete</a> &nbsp; &nbsp;
 
                     </div>
                     </div>
