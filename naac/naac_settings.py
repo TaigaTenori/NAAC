@@ -12,3 +12,6 @@ temple_position = [
     (1, [650, 650, 7]), # (TOWN_ID, [ posx, posy, posz])
     (2, [455, 234, 6])
 ]
+
+
+latest_news = 5; # how many news posts to show

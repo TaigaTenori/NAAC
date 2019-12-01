@@ -7,6 +7,6 @@ class NewsPost(models.Model):
     body = models.TextField();
     author = models.CharField(max_length=50);
 
-    created = models.DateField(auto_now_add=True);
+    created = models.DateTimeField(auto_now_add=True);
 
     published = models.BooleanField(default=True);

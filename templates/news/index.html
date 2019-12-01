@@ -9,19 +9,30 @@
             <table>
                 <tbody>
                     <tr>
-                        <td>
-                            Author: {{ post.author }}
+                        <td class="created">
+                            {{ post.created }}
                         </td>
-                        <td>
+                        <td class ="title">
                             {{ post.topic }}
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            {{ post.body }}
+                        <td colspan="2" class="body">
+                            <pre>{{ post.body }}</pre>
                         <td>
                     </tr>
+                    <tr>
+                        <td>
+                            {%if request.user.is_superuser %}
+                            <a href="" onclick="deleteConfirm('{% url 'delete_news' post.id %}')"> Delete </a>&nbsp;&nbsp;&nbsp;
+                            <a href=""> Edit </a>
+                            {% endif %}
+                        </td>
 
+                        <td class="news_footer">
+                            Posted by {{ post.author }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

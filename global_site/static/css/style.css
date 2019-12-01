@@ -9,6 +9,31 @@ body {
   margin:auto;
 
 }
+div.news_post {
+    /* border: 1px solid black; */
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid black;
+    box-shadow: 2px 2px 4px #000000;
+}
+.news_post td {
+    padding: 10px;
+}
+.news_footer { text-align: right;}
+pre {
+    white-space: pre-wrap;
+}
+td.body { padding-top: 25px; }
+td.title { border-bottom: 1px solid grey ;}
+td.created  {
+    background-color: black;
+    color: white;
+    width: 30%;
+    white-space: nowrap;
+
+    opacity: 60%;
+    text-align: center;
+}
 h1, h2, h3 {
     font-family: Monoton;
     padding-bottom: 20px;
