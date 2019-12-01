@@ -9,4 +9,4 @@ class NewsPost(models.Model):
 
     created = models.DateField(auto_now_add=True);
 
-    published = models.BooleanField();
+    published = models.BooleanField(default=True);
