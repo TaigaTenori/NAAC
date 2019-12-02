@@ -8,8 +8,9 @@ from django.contrib.auth.decorators import login_required
 from players.models import Player
 import datetime
 from naac import naac_settings as config
-
+from django.core.mail import send_mail
 from django.contrib.auth.models import update_last_login
+import naac.emails as emails
 
 # Create your views here.
 def index(request):
@@ -59,6 +60,8 @@ def create_account(request):
     if form.is_valid():
         user = form.save()
         messages.success(request, "Success! You are now registered!")
+        if config.registration_email:
+            send_mail(emails.reg_topic, emails.reg_message.replace('{username}', user.name), emails.from_email , [user.email])
         if config.AUTO_LOGIN:
             # automatically login the user
             user = authenticate(name=form.cleaned_data['name'], password=form.cleaned_data['password1'],)

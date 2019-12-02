@@ -9,6 +9,15 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
+from naac import naac_settings as config
+
+if config.registration_email:
+    EMAIL_HOST = config.email_settings['host']
+    EMAIL_PORT = config.email_settings['port']
+    EMAIL_HOST_USER = config.email_settings['user']
+    EMAIL_HOST_PASSWORD = config.email_settings['pass']
+    EMAIL_USE_SSL = config.email_settings['ssl']
+    EMAIL_USE_TLS = not EMAIL_USE_SSL
 
 
 import os
