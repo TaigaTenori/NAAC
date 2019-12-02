@@ -25,7 +25,7 @@
                         <td>
                             {%if request.user.is_superuser %}
                             <a href="" onclick="deleteConfirm('{% url 'delete_news' post.id %}')"> Delete </a>&nbsp;&nbsp;&nbsp;
-                            <a href=""> Edit </a>
+                            <a href="{% url 'edit_news' post.id %}"> Edit </a>
                             {% endif %}
                         </td>
 

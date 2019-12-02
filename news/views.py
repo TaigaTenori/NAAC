@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from naac import naac_settings as config
 from .models import NewsPost
 from .forms import NewsPostForm
@@ -28,6 +28,19 @@ def delete_news(request, id):
         messages.success(request, "News post %s deleted!" % post.topic)
         post.delete()
     else:
-        messages.fail('message')(request, "News post with that id doesn't exist")
+        messages.fail(request, "News post with that id doesn't exist")
 
     return redirect(reverse('news_index'))
+
+@staff_member_required
+def edit_news(request, id):
+    post = get_object_or_404(NewsPost, id=id)
+    if request.method == 'POST':
+        form = NewsPostForm(data=request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "The post has been updated!")
+            return redirect(reverse('news_index'))
+    else:
+        form = NewsPostForm(instance=post)
+        return render(request, 'news/edit_news_post.html', {"form": form})
