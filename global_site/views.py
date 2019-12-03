@@ -11,11 +11,22 @@ from naac import naac_settings as config
 from django.core.mail import send_mail
 from django.contrib.auth.models import update_last_login
 import naac.emails as emails
-
+from django.core.validators import validate_email
+from django.http import JsonResponse
 # Create your views here.
 def index(request):
-
     return render(request, 'global_site/index.html')
+
+@login_required
+def change_email(request):
+    validate_email(request.GET.get('new_email')) # will throw an exception if the user bypasses valid email check in preceeding js
+    account = get_object_or_404(Account, name=request.user)
+    account.email = request.GET.get('new_email')
+    account.save()
+
+    return JsonResponse({'success': True})
+
+
 
 
 def set_new_password(request, hash):

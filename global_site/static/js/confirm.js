@@ -15,3 +15,27 @@ function deleteConfirm(url) {
       }
     })
 }
+async function emailChangeConfirm() {
+    event.preventDefault();
+    const { value: email } = await Swal.fire({
+      title: 'Input email address',
+      input: 'email',
+      inputPlaceholder: 'Enter your email address'
+    })
+
+    if (email) {
+        console.log('ajax');
+        $.ajax({
+            url: '/ajax/change_email/',
+            data: {
+              'new_email': email
+            },
+            dataType: 'json',
+            success: function (data) {
+              if (data.success) {
+                Swal.fire("E-mail changed successfully!");
+              }
+            }
+          });
+    }
+}
