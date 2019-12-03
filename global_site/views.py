@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth import authenticate, login, logout
-from users.forms import AccountCreationForm, AccountAuthenticationForm
+from users.forms import AccountCreationForm, AccountAuthenticationForm, PasswordResetForm, PostResetPasswordForm
 from users.models import Account
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -14,8 +14,42 @@ import naac.emails as emails
 
 # Create your views here.
 def index(request):
+
     return render(request, 'global_site/index.html')
 
+
+def set_new_password(request, hash):
+    account = get_object_or_404(Account, password_reset=hash)
+
+    form = PostResetPasswordForm(request.POST or None)
+    if request.POST:
+        if form.is_valid():
+            account.set_password(form.cleaned_data['password1'])
+            account.password_reset = None
+            account.save()
+            messages.success(request, 'Your password has been changed!')
+            return redirect(reverse('account_overview'))
+    else:
+        messages.success(request, 'You can now set your new password below')
+    return render(request, 'global_site/new_password.html', {'form': form})
+
+
+
+def password_reset(request):
+    form = PasswordResetForm(request.POST or None)
+    if request.POST:
+        if form.is_valid():
+            if Account.objects.filter(name=form.cleaned_data['name'], email=form.cleaned_data['email']).exists():
+
+                account = Account.objects.get(name=form.cleaned_data['name'], email=form.cleaned_data['email'])
+                hash = emails.generateHash()
+                account.password_reset = hash
+                account.save()
+                messages.success(request, "We've sent a password reset link to your email!")
+                send_mail(emails.res_topic, emails.res_message.replace('{hash}', hash), emails.from_email, [form.cleaned_data['email']] )
+            else:
+                messages.error(request, "The account and e-mail address do not match.")
+    return render(request, 'global_site/password_reset.html', {"form": form})
 
 def user_login(request):
     if request.user.is_authenticated:

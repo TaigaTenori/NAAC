@@ -39,6 +39,7 @@ class AccountManager(UserManager):
 
 class Account(AbstractUser):
     name = models.CharField(unique=True, max_length=32)
+    password_reset = models.CharField(default=None, max_length=50)
 
     USERNAME_FIELD = 'name'
 
