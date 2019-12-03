@@ -32,10 +32,18 @@ async function emailChangeConfirm() {
             },
             dataType: 'json',
             success: function (data) {
-              if (data.success) {
-                Swal.fire("E-mail changed successfully!");
+                if (data.success) {
+                  var cell = $('#change_email');
+                  cell.html = email;
+                  cell.fadeOut(800, function(){
+                      $('#change_email').html(email).fadeIn().delay(2000);
+
+                  });
+
+                }
+                //Swal.fire("E-mail changed successfully!");
               }
             }
-          });
+          );
     }
 }
