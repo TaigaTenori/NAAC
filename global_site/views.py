@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from users.forms import AccountCreationForm, AccountAuthenticationForm, PasswordResetForm, PostResetPasswordForm
 from users.models import Account
 from django.contrib import messages
@@ -12,6 +12,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import update_last_login
 import naac.emails as emails
 from django.core.validators import validate_email
+from django.contrib.auth.password_validation import validate_password
 from django.http import JsonResponse
 # Create your views here.
 def index(request):
@@ -27,7 +28,15 @@ def change_email(request):
     return JsonResponse({'success': True})
 
 
+@login_required
+def change_password(request):
+    validate_password(request.GET.get('new_password'))
+    account = get_object_or_404(Account, name=request.user)
+    account.set_password(request.GET.get('new_password'))
+    account.save()
+    update_session_auth_hash(request, account)
 
+    return JsonResponse({'success': True})
 
 def set_new_password(request, hash):
     account = get_object_or_404(Account, password_reset=hash)
