@@ -133,4 +133,5 @@ def account_overview(request):
     account = request.user
     # Also provide a list of characters on this accounts
     characters = Player.objects.filter(account_id=account.id).only('name', 'level')
+
     return render(request, 'global_site/account_overview.html', {'account': account, 'characters': characters })

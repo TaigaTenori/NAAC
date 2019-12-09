@@ -11,6 +11,7 @@ from django.contrib.auth.models import AbstractUser, User, UserManager
 
 
 
+
 class AccountManager(UserManager):
     def create_user(self, name = None, email=None, password1=None ):
         if not email:
@@ -45,9 +46,15 @@ class Account(AbstractUser):
 
     objects = AccountManager()
 
+    def isOnline(self):
+        return Player.objects.filter(account_id=self.id, online=1).exists()
+
 
     def __str__(self):
         return self.name
     class Meta:
         managed = True
         db_table = 'accounts'
+
+
+from players.models import Player

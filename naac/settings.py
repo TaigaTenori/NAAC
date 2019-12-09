@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'players',
     'news',
+    'guilds',
 ]
 
 MIDDLEWARE = [
