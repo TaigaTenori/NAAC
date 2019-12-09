@@ -1,6 +1,6 @@
 function deleteConfirm(url) {
     event.preventDefault();
-    
+
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -40,9 +40,9 @@ async function passwordChange() {
             success: function (data) {
                 if (data.success) {
                   var cell = $('#change_password');
-                  cell.html('Password changed');
-                  cell.fadeOut(1800, function(){
-                      $('#change_password').html('************').fadeIn().delay(3000);
+                  cell.html('<span style="color:green">Password changed successful!</span>');
+                  cell.fadeOut(2800, function(){
+                      $('#change_password').html('************').fadeIn().delay(4000);
 
                   });
 

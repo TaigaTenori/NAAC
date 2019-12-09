@@ -82,15 +82,18 @@ def user_login(request):
 
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-
+            remember_me = form.cleaned_data['remember_me']
             user = authenticate(name=username,
                                 password=password)
 
             if user is not None:
                 messages.success(request, "You are now logged in!")
                 login(request, user)
-                #update_last_login(None, user)
-                return redirect('index')
+                if remember_me:
+                    request.session.set_expiry(config.cookie_timeout)
+                else:
+                    request.session.set_expiry(0)
+                return redirect('account_overview')
             else:
                 messages.error(request, 'The supplied account name and password is incorrect')
 

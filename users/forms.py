@@ -17,7 +17,8 @@ class PostResetPasswordForm(forms.Form):
             raise forms.ValidationError('The passwords do not match.')
 
 class AccountAuthenticationForm(AuthenticationForm):
-
+    remember_me = forms.BooleanField(required=False)
+    
     class Meta:
         model = Account
         fields = {'name', 'password', }
