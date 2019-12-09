@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('global_site.urls')),
     path('characters/', include('players.urls')),
     path('news/', include('news.urls')),
+    path('guilds/', include('guilds.urls')),
 ]
